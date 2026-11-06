@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="EventNest — Discover extraordinary experiences, connect with people and find events worth showing up for.">
+  <title>EventNest | Discover Events</title>
+
+  <!-- Favicon Icon (SVG Data URI) -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232449D8'/><text x='50%' y='68%' font-size='56' font-weight='800' fill='white' text-anchor='middle' font-family='sans-serif'>E</text></svg>">
+
+  <!-- Google Fonts: Space Grotesk (Headings) & DM Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome Icons 6.5.1 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ============================================ -->
+  <!-- 1. NAVIGATION BAR -->
+  <!-- ============================================ -->
+  <header class="site-header" id="header">
+    <div class="container nav-container">
+      <!-- Brand Logo -->
+      <a href="#home" class="brand-logo" aria-label="EventNest Home">
+        <span class="logo-mark"><i class="fa-solid fa-compass"></i></span>
+        <span class="logo-text">Event<span class="logo-accent">Nest.</span></span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" id="navMenu" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#featured" class="nav-link">Featured</a></li>
+          <li class="nav-item"><a href="#events" class="nav-link">Explore Events</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions (My Passes, Theme Toggle, Mobile Hamburger) -->
+      <div class="nav-actions">
+        <!-- My Registrations Button -->
+        <button type="button" class="btn-passes" id="myRegistrationsBtn" title="View My Registered Events"
+          aria-label="My Registrations">
+          <i class="fa-solid fa-ticket"></i>
+          <span class="btn-text-hide-mobile">My Passes</span>
+          <span class="badge-count" id="regCountBadge">0</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button type="button" class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Theme"
+          aria-label="Switch theme">
+          <i class="fa-solid fa-moon moon-icon"></i>
+          <i class="fa-solid fa-sun sun-icon"></i>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button type="button" class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="Open mobile navigation menu"
+          aria-expanded="false" aria-controls="mobileDrawer">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer Overlay -->
+  <div class="mobile-drawer-overlay" id="drawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile Navigation Drawer">
+    <div class="drawer-header">
+      <div class="brand-logo">
+        <span class="logo-mark"><i class="fa-solid fa-compass"></i></span>
+        <span class="logo-text">Event<span class="logo-accent">Nest.</span></span>
+      </div>
+      <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close navigation menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <ul class="mobile-nav-list">
+      <li><a href="#home" class="mobile-nav-link active"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="#featured" class="mobile-nav-link"><i class="fa-solid fa-fire"></i> Featured Events</a></li>
+      <li><a href="#events" class="mobile-nav-link"><i class="fa-solid fa-calendar-days"></i> Explore Events</a></li>
+      <li><a href="#about" class="mobile-nav-link"><i class="fa-solid fa-circle-info"></i> About EventNest</a></li>
+      <li><a href="#contact" class="mobile-nav-link"><i class="fa-solid fa-envelope"></i> Contact Us</a></li>
+    </ul>
+    <div class="drawer-footer">
+      <button type="button" class="btn btn-cobalt btn-block" id="mobileMyPassesBtn">
+        <i class="fa-solid fa-ticket"></i> My Registered Passes (<span id="mobileRegCount">0</span>)
+      </button>
+      <p class="drawer-tagline">Discover. Explore. Experience.</p>
+    </div>
+  </aside>
+
+  <!-- ============================================ -->
+  <!-- 2. HERO SECTION -->
+  <!-- ============================================ -->
+  <section class="hero-section" id="home">
+    <div class="container hero-container">
+      <!-- Left Column: Editorial Headline & Actions -->
+      <div class="hero-editorial-left">
+        <div class="hero-tag-badge">
+          <span class="badge-dot"></span>
+          <span>2026 Campus Festival &amp; Summit Hub</span>
+        </div>
+
+        <h1 class="hero-title">
+          MAKE YOUR<br>
+          NEXT MOMENT.<br>
+          <span class="text-coral">UNFORGETTABLE.</span>
+        </h1>
+
+        <p class="hero-description">
+          Discover extraordinary experiences, connect with people and find events worth showing up for.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-actions">
+          <a href="#events" class="btn btn-cobalt btn-lg">
+            <i class="fa-solid fa-arrow-right"></i> Discover Events
+          </a>
+          <a href="#featured" class="btn btn-outline-navy btn-lg">
+            See Featured
+          </a>
+        </div>
+
+        <!-- Editorial Statistics Bar -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">Major Events</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">6</span>
+            <span class="stat-label">Categories</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">15K+</span>
+            <span class="stat-label">Attendees</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Free Signups</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Asymmetric Editorial Photo & Floating TechNova Card -->
+      <div class="hero-editorial-right">
+        <div class="hero-photo-frame">
+          <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80"
+            alt="Crowd cheering at a vibrant international festival stage" class="hero-large-photo" loading="eager"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80';">
+          <div class="photo-editorial-tag">
+            <i class="fa-solid fa-fire"></i> Live Season 2026
+          </div>
+        </div>
+
+        <!-- Floating Event Information Card for TechNova 2026 -->
+        <div class="hero-floating-card" id="countdownCard">
+          <div class="floating-card-header">
+            <span class="floating-pill-cat" id="countdownCategory">Technology</span>
+            <span class="floating-pill-status"><i class="fa-solid fa-bolt"></i> Spotlight</span>
+          </div>
+
+          <h3 class="floating-card-title" id="countdownEventTitle">TechNova 2026: AI &amp; Quantum Summit</h3>
+
+          <div class="floating-card-meta">
+            <span><i class="fa-regular fa-calendar"></i> Nov 20, 2026</span>
+            <span><i class="fa-solid fa-location-dot"></i> Campus 6 Auditorium</span>
+          </div>
+
+          <!-- Real-Time Countdown Timer -->
+          <div class="floating-countdown" id="heroCountdown" aria-label="Event countdown timer">
+            <div class="f-timer-box">
+              <span class="f-timer-val" id="days">00</span>
+              <span class="f-timer-lbl">Days</span>
+            </div>
+            <span class="f-colon">:</span>
+            <div class="f-timer-box">
+              <span class="f-timer-val" id="hours">00</span>
+              <span class="f-timer-lbl">Hours</span>
+            </div>
+            <span class="f-colon">:</span>
+            <div class="f-timer-box">
+              <span class="f-timer-val" id="minutes">00</span>
+              <span class="f-timer-lbl">Mins</span>
+            </div>
+            <span class="f-colon">:</span>
+            <div class="f-timer-box">
+              <span class="f-timer-val" id="seconds">00</span>
+              <span class="f-timer-lbl">Secs</span>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-cobalt btn-block btn-sm" id="heroCountdownRegisterBtn">
+            <i class="fa-solid fa-ticket"></i> Reserve Free Pass
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 3. FEATURED EVENTS SECTION (EDITORIAL COMPOSITION) -->
+  <!-- ============================================ -->
+  <section class="section-featured" id="featured">
+    <div class="container">
+      <div class="section-heading-wrap">
+        <div>
+          <span class="editorial-subheading">Curated Selection</span>
+          <h2 class="editorial-heading">Events You Can't Miss.</h2>
+        </div>
+        <p class="section-subtext">
+          Handpicked flagship summits, live music spectacles, and championship finals designed for transformative
+          experiences.
+        </p>
+      </div>
+
+      <!-- Asymmetric Editorial Grid (Rendered dynamically by script.js) -->
+      <div class="editorial-featured-grid" id="featuredGrid">
+        <!-- Injected dynamically via script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 4. EXPLORE ALL EVENTS (SEARCH & FILTERS) -->
+  <!-- ============================================ -->
+  <section class="section-events" id="events">
+    <div class="container">
+      <div class="section-heading-wrap">
+        <div>
+          <span class="editorial-subheading">Full Schedule</span>
+          <h2 class="editorial-heading">Find Events for You.</h2>
+        </div>
+        <p class="section-subtext">
+          Filter through multiple disciplines, venues, and schedules to discover gatherings that match your passion.
+        </p>
+      </div>
+
+      <!-- Search & Sort Bar -->
+      <div class="discovery-toolbar">
+        <div class="search-input-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="searchInput" class="search-input"
+            placeholder="Search events by name, organizer or keywords..." aria-label="Search events by name"
+            autocomplete="off">
+          <button type="button" class="clear-search-btn" id="clearSearchBtn" title="Clear search"
+            aria-label="Clear search input">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="sort-select-wrapper">
+          <label for="sortSelect" class="sort-label"><i class="fa-solid fa-arrow-down-short-wide"></i> Sort:</label>
+          <select id="sortSelect" class="sort-select" aria-label="Sort events">
+            <option value="date-asc">Date: Upcoming First</option>
+            <option value="date-desc">Date: Latest First</option>
+            <option value="title-asc">Title: A to Z</option>
+            <option value="title-desc">Title: Z to A</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="category-pills-scroll">
+        <div class="category-pills" id="categoryFilters" role="tablist" aria-label="Filter events by category">
+          <button type="button" class="category-pill active" data-category="all" role="tab" aria-selected="true">
+            All Events <span class="pill-number" id="count-all">0</span>
+          </button>
+          <button type="button" class="category-pill" data-category="Technology" role="tab" aria-selected="false">
+            Technology <span class="pill-number" id="count-tech">0</span>
+          </button>
+          <button type="button" class="category-pill" data-category="Music" role="tab" aria-selected="false">
+            Music <span class="pill-number" id="count-music">0</span>
+          </button>
+          <button type="button" class="category-pill" data-category="Education" role="tab" aria-selected="false">
+            Education <span class="pill-number" id="count-edu">0</span>
+          </button>
+          <button type="button" class="category-pill" data-category="Business" role="tab" aria-selected="false">
+            Business <span class="pill-number" id="count-biz">0</span>
+          </button>
+          <button type="button" class="category-pill" data-category="Cultural" role="tab" aria-selected="false">
+            Cultural <span class="pill-number" id="count-cult">0</span>
+          </button>
+          <button type="button" class="category-pill" data-category="Sports" role="tab" aria-selected="false">
+            Sports <span class="pill-number" id="count-sports">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Active Filters Status Bar -->
+      <div class="discovery-status-bar" id="filterStatusBar">
+        <div class="status-left">
+          <span id="resultsCount">Showing 10 events</span>
+          <span class="active-filter-tags" id="activeFilterTags"></span>
+        </div>
+        <button type="button" class="btn-reset-filters" id="clearAllFiltersBtn">
+          <i class="fa-solid fa-rotate-left"></i> Reset Filters
+        </button>
+      </div>
+
+      <!-- Events Grid Container -->
+      <div class="events-cards-grid" id="eventsGrid" aria-live="polite">
+        <!-- Event cards rendered via script.js -->
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state-card hidden" id="emptyState">
+        <div class="empty-state-icon">
+          <i class="fa-solid fa-calendar-xmark"></i>
+        </div>
+        <h3 class="empty-state-title">No Matching Events Found</h3>
+        <p class="empty-state-text">We couldn't find any events matching your search or selected filter. Try adjusting
+          your query or resetting all filters.</p>
+        <button type="button" class="btn btn-cobalt" id="emptyResetBtn">
+          <i class="fa-solid fa-arrow-rotate-right"></i> Reset Search &amp; Filters
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 5. ABOUT SECTION (EDITORIAL IMAGE COLLAGE) -->
+  <!-- ============================================ -->
+  <section class="section-about" id="about">
+    <div class="container">
+      <div class="about-editorial-grid">
+        <!-- Left: Text Story & Value Cards -->
+        <div class="about-text-column">
+          <span class="editorial-subheading">Our Campus &amp; Mission</span>
+          <h2 class="editorial-heading">More Than Events — A Thriving Community.</h2>
+          <p class="about-paragraph">
+            <strong>EventNest</strong> connects university talent, student innovators, and guest speakers in
+            a single curated discovery platform. From bleeding-edge artificial intelligence symposiums to open-air music
+            festivals, we believe transformative learning happens when passionate people assemble in real rooms.
+          </p>
+          <p class="about-paragraph">
+            With instant digital passes, client-side data security, and seamless scheduling, discovering what matters
+            across campus has never looked so effortless.
+          </p>
+
+          <!-- Value Points Grid -->
+          <div class="about-values-grid">
+            <div class="value-item">
+              <div class="value-dot"></div>
+              <div>
+                <h4 class="value-title">Curated Quality</h4>
+                <p class="value-desc">Every event is thoroughly vetted for maximum learning and vibrant engagement.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-dot"></div>
+              <div>
+                <h4 class="value-title">Instant Digital Passes</h4>
+                <p class="value-desc">Fast pass generation with unique verification IDs stored locally on your device.
+                </p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-dot"></div>
+              <div>
+                <h4 class="value-title">Privacy-Centric</h4>
+                <p class="value-desc">Zero tracking, zero cookies. All registrations remain purely on your machine.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-dot"></div>
+              <div>
+                <h4 class="value-title">Diverse Horizons</h4>
+                <p class="value-desc">Spanning research labs, sports arenas, stages, and entrepreneurial hubs.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-action-wrap">
+            <a href="#events" class="btn btn-cobalt btn-lg">
+              <i class="fa-solid fa-arrow-right"></i> Learn More &amp; Explore Events
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Sophisticated Editorial Image Collage -->
+        <div class="about-collage-column">
+          <div class="collage-container">
+            <!-- Large Primary Campus Image -->
+            <div class="collage-item collage-item-primary">
+              <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=900&q=80"
+                alt="Contemporary university campus building and courtyard" class="collage-img" loading="lazy">
+              <div class="collage-overlay-caption">
+                <span><i class="fa-solid fa-building-columns"></i> University Campus Hub</span>
+              </div>
+            </div>
+
+            <!-- Overlapping Secondary Community Image -->
+            <div class="collage-item collage-item-secondary">
+              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=700&q=80"
+                alt="Diverse university student community collaborating together" class="collage-img" loading="lazy">
+              <div class="collage-badge-floating">
+                <i class="fa-solid fa-users"></i>
+                <div>
+                  <strong>50,000+</strong>
+                  <small>Community Members</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 6. CONTACT SECTION -->
+  <!-- ============================================ -->
+  <section class="section-contact" id="contact">
+    <div class="container">
+      <div class="section-heading-wrap text-center">
+        <span class="editorial-subheading">Get in Touch</span>
+        <h2 class="editorial-heading">Have a Question or an Event Idea?</h2>
+        <p class="section-subtext">
+          Reach out to the EventNest organizing committee or submit details regarding your upcoming student society
+          gathering.
+        </p>
+      </div>
+
+      <div class="contact-editorial-grid">
+        <!-- Contact Information Column (Left) -->
+        <div class="contact-info-panel">
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="info-text">
+              <h4>Campus Location</h4>
+              <p>Student Activity Center, Innovation Block<br>Bhubaneswar, Odisha 751024, India</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div class="info-text">
+              <h4>Email Support</h4>
+              <p><a href="mailto:events@eventnest.org">events@eventnest.org</a><br><a
+                  href="mailto:support@eventnest.org">support@eventnest.org</a></p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+            <div class="info-text">
+              <h4>Direct Helpline</h4>
+              <p>+91 (0674) 2725113<br>Monday – Saturday, 9:00 AM – 6:00 PM IST</p>
+            </div>
+          </div>
+
+          <!-- Quick FAQ Accordion Preview -->
+          <div class="info-faq-preview">
+            <h4 class="faq-heading"><i class="fa-solid fa-circle-question"></i> Frequent Queries</h4>
+            <div class="mini-faq">
+              <strong class="mini-q">Is registration completely free?</strong>
+              <p class="mini-a">Yes. All university and partner conclaves are complimentary for registered attendees.
+              </p>
+            </div>
+            <div class="mini-faq">
+              <strong class="mini-q">How do I access my saved tickets?</strong>
+              <p class="mini-a">Click "My Passes" on the top navigation bar at any point to view or print your digital
+                pass.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Professional Contact Form Column (Right) -->
+        <div class="contact-form-panel">
+          <div class="form-container-card">
+            <h3 class="form-title">Send Us a Direct Message</h3>
+            <p class="form-subtitle">Complete the fields below and our team will get back to you within 24 hours.</p>
+
+            <form id="contactForm" novalidate>
+              <div class="form-group">
+                <label for="contactName" class="form-label">Full Name <span class="required">*</span></label>
+                <div class="form-input-wrap">
+                  <i class="fa-regular fa-user form-icon"></i>
+                  <input type="text" id="contactName" name="name" class="form-control" placeholder="e.g. Aryan Sharma"
+                    required>
+                </div>
+                <span class="field-error" id="contactNameError"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contactEmail" class="form-label">Email Address <span class="required">*</span></label>
+                <div class="form-input-wrap">
+                  <i class="fa-regular fa-envelope form-icon"></i>
+                  <input type="email" id="contactEmail" name="email" class="form-control"
+                    placeholder="e.g. aryan.sharma@example.com" required>
+                </div>
+                <span class="field-error" id="contactEmailError"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contactSubject" class="form-label">Subject <span class="required">*</span></label>
+                <div class="form-input-wrap">
+                  <i class="fa-solid fa-tag form-icon"></i>
+                  <input type="text" id="contactSubject" name="subject" class="form-control"
+                    placeholder="e.g. Query regarding TechNova 2026 Summit" required>
+                </div>
+                <span class="field-error" id="contactSubjectError"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contactMessage" class="form-label">Message <span class="required">*</span></label>
+                <div class="form-input-wrap textarea-wrap">
+                  <i class="fa-regular fa-comment-dots form-icon"></i>
+                  <textarea id="contactMessage" name="message" class="form-control form-textarea" rows="4"
+                    placeholder="How can the EventNest team help you today?" required></textarea>
+                </div>
+                <span class="field-error" id="contactMessageError"></span>
+              </div>
+
+              <!-- Contact Form Client-Side Demonstration Notice -->
+              <div class="local-demo-notice mb-3" style="margin-bottom: 1.25rem;">
+                <i class="fa-solid fa-circle-info"></i>
+                <span><strong>Frontend Demonstration:</strong> Inquiries are validated locally for this university
+                  assignment demonstration and are not submitted to a remote email server.</span>
+              </div>
+
+              <button type="submit" class="btn btn-cobalt btn-block btn-lg" id="contactSubmitBtn">
+                <i class="fa-solid fa-paper-plane"></i> Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 7. FOOTER (DEEP MIDNIGHT-NAVY) -->
+  <!-- ============================================ -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-grid">
+        <!-- Brand Column -->
+        <div class="footer-brand-col">
+          <a href="#home" class="brand-logo footer-logo" aria-label="EventNest">
+            <span class="logo-mark"><i class="fa-solid fa-compass"></i></span>
+            <span class="logo-text">Event<span class="logo-accent">Nest.</span></span>
+          </a>
+          <p class="footer-tagline"><strong>Discover. Explore. Experience.</strong></p>
+          <p class="footer-bio">
+            A premium university festival and event discovery platform designed for students, researchers, and campus
+            changemakers.
+          </p>
+          <div class="footer-socials">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn"
+              aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn"
+              aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn"
+              aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn"
+              aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-menu">
+            <li><a href="#home"><i class="fa-solid fa-arrow-right"></i> Home</a></li>
+            <li><a href="#featured"><i class="fa-solid fa-arrow-right"></i> Featured Events</a></li>
+            <li><a href="#events"><i class="fa-solid fa-arrow-right"></i> Explore All Events</a></li>
+            <li><a href="#about"><i class="fa-solid fa-arrow-right"></i> About Community</a></li>
+            <li><a href="#contact"><i class="fa-solid fa-arrow-right"></i> Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Categories -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Event Categories</h4>
+          <ul class="footer-menu">
+            <li><a href="#events" data-footer-category="Technology"><i class="fa-solid fa-microchip"></i> Technology</a>
+            </li>
+            <li><a href="#events" data-footer-category="Music"><i class="fa-solid fa-music"></i> Music &amp;
+                Concerts</a></li>
+            <li><a href="#events" data-footer-category="Education"><i class="fa-solid fa-graduation-cap"></i>
+                Education</a></li>
+            <li><a href="#events" data-footer-category="Business"><i class="fa-solid fa-briefcase"></i> Business &amp;
+                Startups</a></li>
+            <li><a href="#events" data-footer-category="Cultural"><i class="fa-solid fa-masks-theater"></i> Cultural
+                &amp; Arts</a></li>
+            <li><a href="#events" data-footer-category="Sports"><i class="fa-solid fa-trophy"></i> Sports &amp;
+                Athletics</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Event Dispatch</h4>
+          <p class="footer-dispatch-text">Get weekly announcements on hackathons, passes, and guest headliners.</p>
+          <form class="footer-newsletter-form" id="newsletterForm" novalidate>
+            <div class="newsletter-group">
+              <input type="email" id="newsletterEmail" placeholder="Enter student email..." required
+                class="newsletter-input" aria-label="Newsletter email">
+              <button type="submit" class="newsletter-btn" aria-label="Subscribe">
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+            <span class="field-error" id="newsletterError"></span>
+          </form>
+          <div class="footer-badge-box">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Verified Student Platform • 100% Client-Side LocalStorage</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 <strong>EventNest.</strong> All rights reserved. Designed for excellence.</p>
+        <div class="footer-bottom-meta">
+          <span>Discover. Explore. Experience.</span>
+          <span>•</span>
+          <span>Privacy-First Architecture</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================ -->
+  <!-- 8. EVENT DETAILS MODAL -->
+  <!-- ============================================ -->
+  <div class="modal-backdrop" id="eventModalBackdrop" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="modalEventTitle">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-card">
+        <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- Modal Image Header -->
+        <div class="modal-photo-wrap">
+          <img id="modalEventImg" src="" alt="Event Banner" class="modal-photo">
+          <div class="modal-photo-overlay">
+            <span class="event-badge" id="modalEventCategory">Category</span>
+            <span class="badge-complimentary"><i class="fa-solid fa-circle-check"></i> Free Entry Pass</span>
+          </div>
+        </div>
+
+        <!-- Modal Content -->
+        <div class="modal-body">
+          <div class="modal-organizer-row">
+            <span class="modal-organizer" id="modalEventOrganizer"><i class="fa-solid fa-building-columns"></i>
+              Organizer</span>
+          </div>
+          <h2 class="modal-title" id="modalEventTitle">Event Title Placeholder</h2>
+
+          <!-- Meta Grid -->
+          <div class="modal-meta-grid">
+            <div class="meta-box">
+              <div class="meta-icon"><i class="fa-regular fa-calendar"></i></div>
+              <div>
+                <span class="meta-label">Date</span>
+                <span class="meta-value" id="modalEventDate">Nov 20, 2026</span>
+              </div>
+            </div>
+            <div class="meta-box">
+              <div class="meta-icon"><i class="fa-regular fa-clock"></i></div>
+              <div>
+                <span class="meta-label">Time</span>
+                <span class="meta-value" id="modalEventTime">09:30 AM - 05:00 PM</span>
+              </div>
+            </div>
+            <div class="meta-box">
+              <div class="meta-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <span class="meta-label">Venue</span>
+                <span class="meta-value" id="modalEventVenue">Campus 6 Auditorium</span>
+              </div>
+            </div>
+            <div class="meta-box">
+              <div class="meta-icon"><i class="fa-solid fa-ticket"></i></div>
+              <div>
+                <span class="meta-label">Pass Access</span>
+                <span class="meta-value highlight-access">Complimentary Pass</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="modal-info-block">
+            <h4 class="modal-block-heading"><i class="fa-solid fa-align-left"></i> About This Gathering</h4>
+            <div class="modal-desc-text" id="modalEventFullDesc">
+              Full description goes here.
+            </div>
+          </div>
+
+          <!-- Highlights List -->
+          <div class="modal-info-block">
+            <h4 class="modal-block-heading"><i class="fa-solid fa-list-check"></i> Session Highlights</h4>
+            <ul class="modal-highlights" id="modalHighlightsList">
+              <li><i class="fa-solid fa-circle-check"></i> Verified Certificate of Participation</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Modal Actions -->
+        <div class="modal-footer-actions">
+          <button type="button" class="btn btn-outline-navy" id="modalShareBtn">
+            <i class="fa-solid fa-share-nodes"></i> Share Event
+          </button>
+          <button type="button" class="btn btn-cobalt btn-lg" id="modalRegisterBtn">
+            <i class="fa-solid fa-ticket"></i> Register Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- 9. EVENT REGISTRATION MODAL -->
+  <!-- ============================================ -->
+  <div class="modal-backdrop" id="regModalBackdrop" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="regModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-card">
+        <button type="button" class="modal-close-btn" id="regModalCloseBtn" aria-label="Close registration modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-body reg-modal-body">
+          <div class="reg-heading-box text-center">
+            <div class="reg-avatar-icon"><i class="fa-solid fa-id-card"></i></div>
+            <h2 class="modal-title" id="regModalTitle">Event Registration</h2>
+            <p class="modal-subtitle">Reserve your verified digital entry pass. Data is securely saved to your local
+              browser.</p>
+          </div>
+
+          <form id="registrationForm" novalidate>
+            <!-- Selected Event Dropdown -->
+            <div class="form-group">
+              <label for="regEventSelect" class="form-label">Select Event <span class="required">*</span></label>
+              <div class="form-input-wrap">
+                <i class="fa-solid fa-calendar-star form-icon"></i>
+                <select id="regEventSelect" name="eventSelect" class="form-control form-select" required>
+                  <option value="" disabled selected>-- Choose an Event --</option>
+                  <!-- Populated dynamically by script.js -->
+                </select>
+              </div>
+              <span class="field-error" id="regEventError"></span>
+            </div>
+
+            <!-- Full Name -->
+            <div class="form-group">
+              <label for="regFullName" class="form-label">Full Name <span class="required">*</span></label>
+              <div class="form-input-wrap">
+                <i class="fa-regular fa-user form-icon"></i>
+                <input type="text" id="regFullName" name="fullName" class="form-control"
+                  placeholder="e.g. Priya Sundaram" required>
+              </div>
+              <span class="field-error" id="regFullNameError"></span>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="regEmail" class="form-label">Email Address <span class="required">*</span></label>
+              <div class="form-input-wrap">
+                <i class="fa-regular fa-envelope form-icon"></i>
+                <input type="email" id="regEmail" name="email" class="form-control"
+                  placeholder="e.g. priya.sundaram@example.com" required>
+              </div>
+              <span class="field-error" id="regEmailError"></span>
+            </div>
+
+            <!-- Mobile Phone (Indian 10-digit validation) -->
+            <div class="form-group">
+              <label for="regPhone" class="form-label">Mobile Number (10-Digit Indian) <span
+                  class="required">*</span></label>
+              <div class="form-input-wrap">
+                <span class="form-prefix">+91</span>
+                <input type="tel" id="regPhone" name="phone" class="form-control has-prefix" placeholder="9876543210"
+                  maxlength="10" required>
+              </div>
+              <span class="form-hint">Enter valid 10-digit mobile number starting with 6, 7, 8, or 9.</span>
+              <span class="field-error" id="regPhoneError"></span>
+            </div>
+
+            <!-- Client-Side Notice -->
+            <div class="local-demo-notice">
+              <i class="fa-solid fa-circle-info"></i>
+              <span><strong>Client-Side Demo:</strong> Passes are confirmed and preserved directly in your browser's
+                LocalStorage.</span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group mt-4">
+              <button type="submit" class="btn btn-cobalt btn-block btn-lg" id="confirmRegistrationBtn">
+                <i class="fa-solid fa-circle-check"></i> Complete Registration
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- 10. DIGITAL TICKET PASS MODAL -->
+  <!-- ============================================ -->
+  <div class="modal-backdrop" id="ticketModalBackdrop" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="ticketEventTitle">
+    <div class="modal-dialog">
+      <div class="modal-card ticket-pass-card">
+        <button type="button" class="modal-close-btn" id="ticketCloseBtn" aria-label="Close ticket">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="ticket-container" id="ticketPrintArea">
+          <!-- Ticket Header -->
+          <div class="ticket-head">
+            <div class="ticket-brand">
+              <span class="logo-mark"><i class="fa-solid fa-compass"></i></span>
+              <span class="ticket-logo-text">EVENTNEST. <span>PASS</span></span>
+            </div>
+            <span class="ticket-pill-confirmed">Confirmed</span>
+          </div>
+
+          <!-- Ticket Body -->
+          <div class="ticket-body">
+            <div class="ticket-pass-badge">
+              <span>PASS ID:</span>
+              <strong id="ticketPassId">EN-2026-XXXX</strong>
+            </div>
+
+            <h3 class="ticket-title" id="ticketEventTitle">Event Title</h3>
+
+            <div class="ticket-details-grid">
+              <div>
+                <span class="t-caption"><i class="fa-regular fa-calendar"></i> Date:</span>
+                <strong id="ticketDate">Nov 20, 2026</strong>
+              </div>
+              <div>
+                <span class="t-caption"><i class="fa-regular fa-clock"></i> Time:</span>
+                <strong id="ticketTime">09:30 AM</strong>
+              </div>
+              <div>
+                <span class="t-caption"><i class="fa-solid fa-location-dot"></i> Venue:</span>
+                <strong id="ticketVenue">Auditorium</strong>
+              </div>
+              <div>
+                <span class="t-caption"><i class="fa-solid fa-layer-group"></i> Category:</span>
+                <strong id="ticketCategory">Technology</strong>
+              </div>
+            </div>
+
+            <!-- Attendee & QR Box -->
+            <div class="ticket-attendee-row">
+              <div class="attendee-details">
+                <span class="t-caption">Attendee Name</span>
+                <strong class="attendee-title" id="ticketAttendeeName">Full Name</strong>
+                <span class="attendee-sub" id="ticketAttendeeEmail">email@example.com</span>
+                <span class="attendee-sub" id="ticketAttendeePhone">+91 9876543210</span>
+              </div>
+              <div class="ticket-qr-block">
+                <div class="qr-box">
+                  <i class="fa-solid fa-qrcode"></i>
+                </div>
+                <span class="qr-text">Gate Pass QR</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tear Notch Graphic -->
+          <div class="ticket-tear">
+            <span class="tear-notch tear-left"></span>
+            <span class="tear-line"></span>
+            <span class="tear-notch tear-right"></span>
+          </div>
+
+          <div class="ticket-foot">
+            <p><i class="fa-solid fa-shield-check"></i> Present this digital pass or printed copy at the entrance
+              check-in desk.</p>
+          </div>
+        </div>
+
+        <!-- Ticket Action Buttons -->
+        <div class="ticket-btn-row">
+          <button type="button" class="btn btn-outline-navy" id="printTicketBtn">
+            <i class="fa-solid fa-print"></i> Print / Save Pass
+          </button>
+          <button type="button" class="btn btn-cobalt" id="registerAnotherBtn">
+            <i class="fa-solid fa-plus"></i> Register Another
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- 11. "MY REGISTRATIONS" MANAGEMENT MODAL -->
+  <!-- ============================================ -->
+  <div class="modal-backdrop" id="myRegsModalBackdrop" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="myRegsModalTitle">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-card">
+        <button type="button" class="modal-close-btn" id="myRegsCloseBtn" aria-label="Close passes modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-body">
+          <div class="my-passes-header">
+            <div class="my-passes-icon"><i class="fa-solid fa-ticket"></i></div>
+            <div>
+              <h2 class="modal-title" id="myRegsModalTitle">My Registered Passes</h2>
+              <p class="modal-subtitle">Review, display, or cancel event passes stored in your browser session.</p>
+            </div>
+          </div>
+
+          <!-- List of passes -->
+          <div class="passes-list" id="myRegsList">
+            <!-- Dynamically populated via script.js -->
+          </div>
+
+          <!-- Empty state -->
+          <div class="empty-passes-state hidden" id="emptyRegsState">
+            <div class="empty-state-icon"><i class="fa-solid fa-ticket-simple"></i></div>
+            <h3>No Active Event Passes</h3>
+            <p>You haven't registered for any events yet. Browse our curated calendar and claim your complimentary pass!
+            </p>
+            <button type="button" class="btn btn-cobalt" id="browseEventsFromRegsBtn">
+              <i class="fa-solid fa-arrow-right"></i> Browse Events
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-footer-actions justify-between">
+          <span class="storage-info"><i class="fa-solid fa-hard-drive"></i> HTML5 LocalStorage Persistent</span>
+          <button type="button" class="btn btn-outline-navy" id="closeMyRegsModalBtn">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- 12. FLOATING BACK TO TOP BUTTON -->
+  <!-- ============================================ -->
+  <button type="button" class="back-to-top" id="backToTopBtn" title="Back to top" aria-label="Scroll back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- ============================================ -->
+  <!-- 13. TOAST NOTIFICATION CONTAINER -->
+  <!-- ============================================ -->
+  <div class="toast-container" id="toastContainer" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+
+</html>
